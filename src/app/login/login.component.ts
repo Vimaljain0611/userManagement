@@ -1,0 +1,31 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { AuthService } from '../auth.service';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
+})
+export class LoginComponent implements OnInit {
+  loginForm:any;
+  inValidEmailPassword = false;
+  constructor(private fb :FormBuilder,private authService : AuthService) {  loginForm: FormGroup;}
+
+  ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      email: [''],
+      password: [''],
+    });
+  }
+  userLogin(): void {
+    const checkAuth = this.authService.checkLogin(this.loginForm.value);
+    if(checkAuth){
+      //this.routes.navigate(['/dashboard']);
+    }else{
+      this.inValidEmailPassword = true;
+    }
+
+  }
+
+}

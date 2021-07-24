@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row" id="loginForm">
+      <form [formGroup]="loginForm" (ngSubmit)="userLogin()">
+       <div class="modal-header">
+        <h3>Login</h3>
+        </div>
+
+        <div class="modal-body ">
+          <div align="center">
+          <div class="form-goup">
+            <input
+              class="form-control"
+              type="email"
+              formControlName="email"
+              placeholder="Email Id"
+            />
+          </div>
+          <div class="form-goup passwordDiv">
+            <input
+              class="form-control"
+              type="password"
+              formControlName="password"
+              placeholder="Password"
+            />
+
+          </div>
+        </div>
+        <small class="text-danger" *ngIf="inValidEmailPassword">Email & Password not Matched.</small>
+        </div>
+        <div class="modal-footer">
+        <div class="form-goup">
+          <button
+            type="submit"
+            class="btn btn-primary"
+          >
+           Login
+          </button>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
