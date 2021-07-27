@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import { userData } from './userData';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  constructor() {}
 
-  constructor() { }
-
-  getUsersData(): [userData] {
+  getUsersData(): userData[] {
     let data = JSON.parse(localStorage.getItem('credentialData'));
     return data ?? [];
   }
-  getAuthUser(): [userData] {
+  getAuthUser(): userData[] {
     return JSON.parse(localStorage.getItem('currentLogin'));
   }
 
@@ -30,7 +29,7 @@ export class AuthService {
         id: getUser['id'],
         email: getUser['email'],
         password: getUser['password'],
-        type:getUser['type']
+        type: getUser['type'],
       };
       localStorage.setItem('currentLogin', JSON.stringify(data));
       return true;
@@ -43,12 +42,11 @@ export class AuthService {
       return v.toString(6);
     });
   }
-  getEmail(email: string): userData{
+  getEmail(email: string): userData {
     const jsonData = this.getUsersData();
     return jsonData.find((data) => data.email == email);
   }
-  register(formData: { [key: string]: string },type:string)
-  {
+  register(formData: userData, IsAdmin: boolean): void {
     const getMail = this.getEmail(formData.email);
     if (getMail) {
       alert('Email id already exist !!');
@@ -56,14 +54,13 @@ export class AuthService {
       const jsonData = this.getUsersData();
       const data = {
         id: this.uudId(),
-        name:formData.name,
+        name: formData.name,
         email: formData.email,
         password: formData.password,
-        IsAdmin:false
+        IsAdmin: IsAdmin,
       };
       jsonData.push(data);
       localStorage.setItem('credentialData', JSON.stringify(jsonData));
     }
-
   }
 }

@@ -9,6 +9,8 @@ import { HeaderModule } from './header/header.module';
 import { SignupModule } from './signup/signup.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +21,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     HeaderModule,
     SignupModule,
     BrowserAnimationsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    FontAwesomeModule,
   ],
   providers: [AuthService,AuthGuard],
   bootstrap: [AppComponent]

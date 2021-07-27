@@ -31,8 +31,12 @@ export class SignupComponent implements OnInit {
       },
     );
   }
+  getControls()
+  {
+    return this.signUpForm.controls;
+  }
   register(): void {
-    this.authService.register(this.signUpForm.value,'user');
+    this.authService.register(this.signUpForm.value,false);
 
   }
 
