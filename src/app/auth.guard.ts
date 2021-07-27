@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
 export class AuthGuard implements CanActivate {
   constructor(private route: Router, private authService: AuthService) {}
   canActivate(): boolean {
-    if (this.authService.getCredentials()) {
+    if (this.authService.getAuthUser()) {
       return true;
     } else {
       this.route.navigate(['/login']);

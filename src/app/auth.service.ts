@@ -7,16 +7,16 @@ export class AuthService {
 
   constructor() { }
 
-  getCredentialData(): [userData] {
+  getUsersData(): [userData] {
     let data = JSON.parse(localStorage.getItem('credentialData'));
     return data ?? [];
   }
-  getCredentials(): [userData] {
+  getAuthUser(): [userData] {
     return JSON.parse(localStorage.getItem('currentLogin'));
   }
 
   checkLogin(userData: userData): boolean {
-    const jsonData = this.getCredentialData();
+    const jsonData = this.getUsersData();
     let getUser = {};
 
     getUser = jsonData.find(
@@ -44,7 +44,7 @@ export class AuthService {
     });
   }
   getEmail(email: string): userData{
-    const jsonData = this.getCredentialData();
+    const jsonData = this.getUsersData();
     return jsonData.find((data) => data.email == email);
   }
   register(formData: { [key: string]: string },type:string)
@@ -53,7 +53,7 @@ export class AuthService {
     if (getMail) {
       alert('Email id already exist !!');
     } else {
-      const jsonData = this.getCredentialData();
+      const jsonData = this.getUsersData();
       const data = {
         id: this.uudId(),
         name:formData.name,
