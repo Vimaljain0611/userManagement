@@ -1,10 +1,14 @@
+<div class="row" id="logoRow">
+  <a href="">
+  <img src="./assets/homeImages/logo.png">
+  </a>
+</div>
 <div class="container">
   <div class="row" id="loginForm">
       <form [formGroup]="loginForm" (ngSubmit)="userLogin()">
        <div class="modal-header">
         <h3>Login</h3>
         </div>
-
         <div class="modal-body ">
           <div align="center">
           <div class="form-goup">
@@ -22,10 +26,9 @@
               formControlName="password"
               placeholder="Password"
             />
-
           </div>
         </div>
-        <small class="text-danger" *ngIf="inValidEmailPassword">Email & Password not Matched.</small>
+        <small class="text-danger" *ngIf="inValidEmailPassword">Invalid Email or Password.</small>
         </div>
         <div class="modal-footer">
         <div class="form-goup">
@@ -38,5 +41,19 @@
         </div>
       </div>
       </form>
+    </div>
+  </div>
+
+
+
+  <div class="toast align-items-center text-white bg-primary border-0" >
+    <div class="d-flex">
+      <div class="toast-Header">
+        Hello, world! This is a toast message.
+      </div>
+      <div class="toast-body">
+        Hello, world! This is a toast message.
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
   </div>

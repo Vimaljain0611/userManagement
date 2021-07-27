@@ -1,13 +1,26 @@
+body{
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
 .passwordDiv{
   margin-top: 22px;
     margin-bottom: 22px;
 }
 #loginForm {
-  border: 1px solid #DFDFDF;
+  border: 1px solid hsl(0, 0%, 87%);
   padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
     margin: 50px auto;
-    width: 400px;
+    width: 35%;
+}
+#logoRow{
+  text-align: center;
+    margin: 30px auto;
+}
+.model-header{
+  padding: 13px 8px;
+}
+h3{
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
