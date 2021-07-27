@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import { userData } from './userData';
 @Injectable({
   providedIn: 'root'
 })
@@ -7,16 +7,15 @@ export class AuthService {
 
   constructor() { }
 
-  getCredentialData(): [{ [key: string]: string }] {
+  getCredentialData(): [userData] {
     let data = JSON.parse(localStorage.getItem('credentialData'));
     return data ?? [];
   }
-  getCredentials(): [{ [key: string]: string }] {
-    let data = JSON.parse(localStorage.getItem('currentLogin'));
-    return data ?? [];
+  getCredentials(): [userData] {
+    return JSON.parse(localStorage.getItem('currentLogin'));
   }
 
-  checkLogin(userData: { [key: string]: string }): boolean {
+  checkLogin(userData: userData): boolean {
     const jsonData = this.getCredentialData();
     let getUser = {};
 
@@ -44,7 +43,7 @@ export class AuthService {
       return v.toString(6);
     });
   }
-  getEmail(email: string): { [key: string]: string } {
+  getEmail(email: string): userData{
     const jsonData = this.getCredentialData();
     return jsonData.find((data) => data.email == email);
   }
@@ -57,9 +56,10 @@ export class AuthService {
       const jsonData = this.getCredentialData();
       const data = {
         id: this.uudId(),
+        name:formData.name,
         email: formData.email,
         password: formData.password,
-        type:type
+        IsAdmin:false
       };
       jsonData.push(data);
       localStorage.setItem('credentialData', JSON.stringify(jsonData));

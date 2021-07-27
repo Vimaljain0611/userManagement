@@ -1,0 +1,31 @@
+<!-- Modal -->
+      <div class="modal-header">
+        <h3 class="modal-title" id="signUpFormLabel">Sign Up</h3>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="signUpForm" (ngSubmit)="register()">
+        <div class="form-group" >
+          <div class="inputDiv">
+            <input type="text" class="form-control" formControlName="fullName" placeholder="Full Name" required>
+            <span ><i class="fa fa-check" *ngIf="this.signUpForm.controls.fullName.valid"></i></span>
+          </div>
+          <div class="inputDiv">
+            <input type="email" class="form-control" formControlName="email" placeholder="Email" required>
+            <span><i class="fa fa-check" *ngIf="this.signUpForm.controls.email.valid"></i></span>
+          </div>
+          <div class="inputDiv">
+            <input type="password" class="form-control" formControlName="password" placeholder="Password" required>
+            <span><i class="fa fa-check" *ngIf="this.signUpForm.controls.password.valid"></i></span>
+          </div>
+          <div class="inputDiv">
+            <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Confirm Password" required>
+            <span><i class="fa fa-check" *ngIf="this.signUpForm.controls.confirmPassword.valid"></i></span>
+          </div>
+        </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" [disabled]="this.signUpForm.invalid" class="btn btn-primary" (click)='register();bsModalRef.hide()'>Sign Up</button>
+        <button type="button" class="btn btn-warning"  (click)="bsModalRef.hide()">Cancel</button>
+      </div>

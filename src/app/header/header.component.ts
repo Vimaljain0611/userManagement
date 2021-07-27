@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { BehaviorSubject } from 'rxjs';
-import { AuthService } from '../auth.service';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { SignupComponent } from '../signup/signup.component';
 
 @Component({
   selector: 'app-header',
@@ -10,34 +9,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  viewDashboard = new BehaviorSubject(this.authService.getCredentials());
-
-  constructor( private fb: FormBuilder,
-    private authService: AuthService,
-    private route:Router) {
+  viewSignUpButton = new BehaviorSubject('');
+  modalRef: BsModalRef;
+  constructor(private modalService:BsModalService) {
 
   }
-  signUpForm: FormGroup;
   ngOnInit(): void {
-
-    this.signUpForm = this.fb.group(
-      {
-        fullName :['',Validators.required],
-        email: [
-          '',
-          [
-            Validators.required,
-            Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
-          ],
-        ],
-        password: ['', Validators.required],
-        confirmPassword: ['', Validators.required],
-      },
-    );
   }
-  register(): void {
-    this.authService.register(this.signUpForm.value,'user');
+  openModal() {
+
+    this.modalRef = this.modalService.show(SignupComponent);
   }
-
-
 }
