@@ -1,7 +1,7 @@
-export interface userData {
-      id:string,
-      name:string
-      email:string,
-      password:string,
-      IsAdmin?:boolean
+export interface UserData {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  IsAdmin?: boolean;
 }

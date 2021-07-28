@@ -1,0 +1,31 @@
+<div class="card">
+  <div class="card-header">Featured</div>
+  <div class="card-body">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a
+          class="nav-link active"
+          data-toggle="tab"
+          routerLink="grid"
+          routerLinkActive="active"
+          >Grid</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          data-toggle="tab"
+          routerLink="list"
+          routerLinkActive="active"
+          >List</a
+        >
+      </li>
+      <span (click)="openAddEmployeeModal()"><i class="fa fa-plus"></i></span>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="mainContent">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

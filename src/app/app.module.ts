@@ -12,9 +12,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
-  declarations: [
-    AppComponent,
- ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,7 +22,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ModalModule.forRoot(),
     FontAwesomeModule,
   ],
-  providers: [AuthService,AuthGuard],
-  bootstrap: [AppComponent]
+  providers: [AuthService, AuthGuard],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

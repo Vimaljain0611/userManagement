@@ -1,0 +1,57 @@
+<div class="modal-header">
+  <h3 class="modal-title" id="signUpFormLabel">Sign Up</h3>
+</div>
+<div class="modal-body">
+  <form [formGroup]="editUserForm" (ngSubmit)="updateUser()">
+    <div class="form-group">
+      <div class="inputDiv w-100 d-inline-flex mb-2">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="fullName"
+          placeholder="Full Name"
+        />
+        <span
+          ><i
+            class="fa fa-check"
+            *ngIf="editUserForm.controls.fullName.valid"
+          ></i
+        ></span>
+      </div>
+      <div class="inputDiv w-100 d-inline-flex mb-2">
+        <input
+          type="email"
+          class="form-control"
+          formControlName="email"
+          placeholder="Email"
+        />
+        <span
+          ><i class="fa fa-check" *ngIf="editUserForm.controls.email.valid"></i
+        ></span>
+      </div>
+
+      <div class="inputDiv w-100 d-inline-flex mb-2">
+        <input
+          type="tel"
+          class="form-control"
+          formControlName="contact"
+          placeholder="Contact no"
+        />
+        <span
+          ><i
+            class="fa fa-check"
+            *ngIf="editUserForm.controls.contact.valid"
+          ></i
+        ></span>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="updateUser()">
+    Save
+  </button>
+  <button type="button" class="btn btn-warning" (click)="bsModalRef.hide()">
+    Cancel
+  </button>
+</div>

@@ -6,16 +6,10 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { SignupModule } from '../signup/signup.module';
 import { SignupComponent } from '../signup/signup.component';
 
-
 @NgModule({
-  declarations: [HeaderComponent,SignupComponent],
+  declarations: [HeaderComponent, SignupComponent],
 
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    ModalModule,
-    SignupModule
-  ],
-  exports:[HeaderComponent]
+  imports: [CommonModule, ReactiveFormsModule, ModalModule, SignupModule],
+  exports: [HeaderComponent],
 })
-export class HeaderModule { }
+export class HeaderModule {}
