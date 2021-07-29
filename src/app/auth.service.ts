@@ -1,26 +1,26 @@
 import { Injectable } from '@angular/core';
-import { userData } from './userData';
+import { UserData } from './userData';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   constructor() {}
 
-  getUsersData(): userData[] {
+  getUsersData(): UserData[] {
     let data = JSON.parse(localStorage.getItem('credentialData'));
     return data ?? [];
   }
-  getAuthUser(): userData[] {
+  getAuthUser(): UserData[] {
     return JSON.parse(localStorage.getItem('currentLogin'));
   }
 
-  checkLogin(userData: userData): boolean {
+  checkLogin(UserData: UserData): boolean {
     const jsonData = this.getUsersData();
     let getUser = {};
 
     getUser = jsonData.find(
       (data) =>
-        data.email == userData.email && data.password == userData.password
+        data.email == UserData.email && data.password == UserData.password
     );
     if (!getUser) {
       return false;
@@ -42,11 +42,11 @@ export class AuthService {
       return v.toString(6);
     });
   }
-  getEmail(email: string): userData {
+  getEmail(email: string): UserData {
     const jsonData = this.getUsersData();
     return jsonData.find((data) => data.email == email);
   }
-  register(formData: userData, IsAdmin: boolean): void {
+  register(formData: UserData, IsAdmin: boolean): void {
     const getMail = this.getEmail(formData.email);
     if (getMail) {
       alert('Email id already exist !!');

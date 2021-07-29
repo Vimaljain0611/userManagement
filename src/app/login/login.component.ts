@@ -6,12 +6,18 @@ import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  loginForm:any;
+  loginForm: any;
   inValidEmailPassword = false;
-  constructor(private fb :FormBuilder,private authService : AuthService,private routes : Router) {  loginForm: FormGroup;}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private routes: Router
+  ) {
+    loginForm: FormGroup;
+  }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -21,12 +27,10 @@ export class LoginComponent implements OnInit {
   }
   userLogin(): void {
     const checkAuth = this.authService.checkLogin(this.loginForm.value);
-    if(checkAuth){
+    if (checkAuth) {
       this.routes.navigate(['/home']);
-    }else{
+    } else {
       this.inValidEmailPassword = true;
     }
-
   }
-
 }

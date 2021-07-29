@@ -1,0 +1,51 @@
+<!-- Add new employee modal -->
+
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Add New</h5>
+</div>
+<div class="modal-body">
+  <form [formGroup]="addEmployeeForm">
+    <div class="from-group">
+      <input
+        class="form-control"
+        type="text"
+        formControlName="name"
+        placeholder="Full Name"
+      />
+      <span
+        ><i class="fa fa-check" *ngIf="addEmployeeForm.controls.name.valid"></i
+      ></span>
+
+      <input
+        class="form-control"
+        type="email"
+        formControlName="email"
+        placeholder="Email"
+      />
+      <span
+        ><i class="fa fa-check" *ngIf="addEmployeeForm.controls.email.valid"></i
+      ></span>
+
+      <input
+        class="form-control"
+        type="tel"
+        formControlName="contact"
+        placeholder="Contact"
+      />
+      <span
+        ><i
+          class="fa fa-check"
+          *ngIf="addEmployeeForm.controls.contact.valid"
+        ></i
+      ></span>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="addEmployee()">
+    Save
+  </button>
+  <button type="button" class="btn btn-warning" (click)="bsModalRef.hide()">
+    Cancel
+  </button>
+</div>
