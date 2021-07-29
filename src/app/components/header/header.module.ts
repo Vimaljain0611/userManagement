@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { SignupModule } from '../signup/signup.module';
-import { SignupComponent } from '../signup/signup.component';
+import { SignupModule } from '../auth-pages/signup/signup.module';
+import { SignupComponent } from '../auth-pages/signup/signup.component';
 
 @NgModule({
   declarations: [HeaderComponent, SignupComponent],
