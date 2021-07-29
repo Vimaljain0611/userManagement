@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UserData } from './userData';
+import { UserData } from '../models/userData';
 @Injectable({
   providedIn: 'root',
 })
@@ -7,11 +7,11 @@ export class AuthService {
   constructor() {}
 
   getUsersData(): UserData[] {
-    let data = JSON.parse(localStorage.getItem('credentialData'));
+    let data = JSON.parse(localStorage.getItem('UsersData'));
     return data ?? [];
   }
   getAuthUser(): UserData[] {
-    return JSON.parse(localStorage.getItem('currentLogin'));
+    return JSON.parse(localStorage.getItem('AuthUser'));
   }
 
   checkLogin(UserData: UserData): boolean {
@@ -31,7 +31,7 @@ export class AuthService {
         password: getUser['password'],
         type: getUser['type'],
       };
-      localStorage.setItem('currentLogin', JSON.stringify(data));
+      localStorage.setItem('AuthUser', JSON.stringify(data));
       return true;
     }
   }
@@ -60,7 +60,7 @@ export class AuthService {
         IsAdmin: IsAdmin,
       };
       jsonData.push(data);
-      localStorage.setItem('credentialData', JSON.stringify(jsonData));
+      localStorage.setItem('UsersData', JSON.stringify(jsonData));
     }
   }
 }
