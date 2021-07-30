@@ -1,0 +1,33 @@
+<table class="table table-bordered">
+  <thead class="text-primary">
+    <tr>
+      <ng-container *ngFor="let title of theadData">
+        <th>{{ title }}</th>
+      </ng-container>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let item of dataToDisplay; let i = index">
+      <tr>
+        <td>{{ i + 1 }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.email }}</td>
+        <td>{{ item.contact }}</td>
+        <td>{{ item.id }}</td>
+        <td class="text-center">
+          <span>
+            <a (click)="openEditModal(item.id)"
+              ><i class="fa fa-edit icons text-primary"></i
+            ></a>
+            |
+            <a
+              (click)="deleteModal(item.id)"
+            >
+              <i class="fa fa-trash icons text-danger"></i>
+            </a>
+          </span>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>

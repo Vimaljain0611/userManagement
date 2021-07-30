@@ -17,6 +17,7 @@ import { EmployeeState } from './state/employeeState/employee.state';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { StateService } from './services/state.service';
 import { UserDataState } from './state/userState/user.state';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [

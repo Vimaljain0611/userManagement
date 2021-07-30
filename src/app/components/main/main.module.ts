@@ -48,7 +48,6 @@ const routes: Routes = [
     CommonModule,
     LeftSideBarModule,
     RouterModule.forChild(routes),
-    ContactModule,
   ],
   exports: [],
 })

@@ -53,11 +53,10 @@ export class UserDataState {
     });
   }
   @Action(DeleteUser)
-  Delete({getState,patchState}: StateContext<UserDataStateModel>, {id}: DeleteUser){
+  DeleteUser({getState,patchState}: StateContext<UserDataStateModel>){
     const state = getState();
-    const filteredArray = state.usersData.filter(item => item.id !== id);
     patchState({
-      usersData: filteredArray,
+      usersData: null,
     });
   }
 }

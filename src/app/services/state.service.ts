@@ -10,7 +10,7 @@ export class StateService {
 
   constructor() { }
   getUsersData(): Observable<UserData[]> {
-    let data = JSON.parse(localStorage.getItem('UsersData'));
+    let data = JSON.parse(localStorage.getItem('AuthUser'));
     return of(data ?? []);
   }
 

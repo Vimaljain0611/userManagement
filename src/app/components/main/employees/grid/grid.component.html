@@ -1,8 +1,8 @@
 <div class="gridItems">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <span class="navbar-brand">
-      <span><b>Total: </b> 1 of 20</span>
-      <span> | <b>Page: </b> 1 of 20</span>
+      <span><b>Total: </b> {{ activePage }} of {{ totalPageCount }}</span>
+      <span> | <b>Page: </b>{{ activePage }}</span>
     </span>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
@@ -10,17 +10,39 @@
           <a
             class="nav-link dropdown-toggle"
             data-bs-toggle="dropdown"
-            href="#"
             role="button"
             aria-expanded="false"
-            >Dropdown</a
-          >
+            >Page size : {{ pagesize }}
+          </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#">Separated link</a></li>
+            <li>
+              <a
+                class="dropdown-item"
+                (click)="ChangePageSize(5, 1)"
+                >5</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                (click)="ChangePageSize(10, 1)"
+                >10</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                (click)="ChangePageSize(15, 1)"
+                >15</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                (click)="ChangePageSize(20, 1)"
+                >20</a
+              >
+            </li>
           </ul>
         </li>
       </ul>
@@ -28,41 +50,33 @@
   </nav>
 
   <div class="row">
-    <div class="col-lg-3 col-sm-6 col-md-4">
-      <div class="card text-center">
-        <i class="fa fa-user profileImg"></i>
-        <h4>Name</h4>
-        <h5>Email</h5>
-        <h5>90911</h5>
-        <span>
-          <a (click)="openEditEmployeeModal()">
-            <i class="fa fa-edit icons"></i>
-          </a>
-
-          <a
-            href="javascript: void(0);"
-            data-bs-toggle="modal"
-            data-bs-target="#deleteEmployeeModal"
-          >
-            <i class="fa fa-trash icons"></i>
-          </a>
-        </span>
+    <ng-container *ngFor="let data of dataToDisplay">
+      <div class="col-lg-3 col-sm-6 col-md-4">
+        <div class="card text-center">
+          <i class="fa fa-user profileImg"></i>
+          <h4>{{ data.name }}</h4>
+          <h5>{{ data.email }}</h5>
+          <h5>{{ data.contact }}</h5>
+          <span>
+            <a (click)="openEditEmployeeModal(data.id)">
+              <i class="fa fa-edit icons text-primary"></i>
+            </a>
+            <a
+              data-bs-toggle="modal"
+              (click)="openDeleteEmployeeModal(data.id)"
+            >
+              <i class="fa fa-trash icons text-danger"></i>
+            </a>
+          </span>
+        </div>
       </div>
-    </div>
+    </ng-container>
   </div>
-</div>
-
-<!-- delete  employee modal -->
-<div class="modal text-center" id="deleteEmployeeModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">Do you really want to remove this employee?</div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-warning">Remove</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Cancel
-        </button>
-      </div>
-    </div>
+  <div class="row">
+    <app-pagination
+      [totalRecords]="totalRecords"
+      [recordsPerPage]="pagesize"
+      (onPageChange)="displayActivePage($event)"
+    ></app-pagination>
   </div>
 </div>

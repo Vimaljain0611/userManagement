@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   userLogin(): void {
     const checkAuth = this.authService.checkLogin(this.loginForm.value);
     if (checkAuth) {
-      this.routes.navigate(['/home']);
+      this.routes.navigate(['/main/home']);
     } else {
       this.inValidEmailPassword = true;
     }

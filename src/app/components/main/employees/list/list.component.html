@@ -1,1 +1,22 @@
-<p>list works!</p>
+<div class="row pageCount">
+  <div class=""></div>
+  <span><b>Total:</b> {{ activePage }} of {{ totalPageCount }}</span>
+  <span><b>Page:</b> {{ activePage }}</span>
+</div>
+
+<div class="row">
+  <app-table
+    [dataToDisplay]="dataToDisplay"
+    [theadData]="tableHeadData"
+    (openEditEmployeeModal)="openEditEmployeeModal($event)"
+    (openDeleteEmployeeModal)="openDeleteEmployeeModal($event)"
+  ></app-table>
+</div>
+
+<div class="row">
+  <app-pagination
+    [totalRecords]="totalRecords"
+    [recordsPerPage]="pagesize"
+    (onPageChange)="displayActivePage($event)"
+  ></app-pagination>
+</div>

@@ -1,10 +1,17 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { UserData } from '../models/userData';
+import { Store } from '@ngxs/store';
+import { DeleteUser } from './../state/userState/user.action';
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor() {}
+  constructor(private store:Store) {}
+
+
+  authentication = new BehaviorSubject({});
 
   getUsersData(): UserData[] {
     let data = JSON.parse(localStorage.getItem('UsersData'));
@@ -27,9 +34,10 @@ export class AuthService {
     } else {
       const data = {
         id: getUser['id'],
+        name: getUser['name'],
         email: getUser['email'],
         password: getUser['password'],
-        type: getUser['type'],
+        isAdmin: getUser['isAdmin'],
       };
       localStorage.setItem('AuthUser', JSON.stringify(data));
       return true;
@@ -46,7 +54,7 @@ export class AuthService {
     const jsonData = this.getUsersData();
     return jsonData.find((data) => data.email == email);
   }
-  register(formData: UserData, IsAdmin: boolean): void {
+  register(formData: UserData, isAdmin: boolean): void {
     const getMail = this.getEmail(formData.email);
     if (getMail) {
       alert('Email id already exist !!');
@@ -57,10 +65,16 @@ export class AuthService {
         name: formData.name,
         email: formData.email,
         password: formData.password,
-        IsAdmin: IsAdmin,
+        isAdmin: isAdmin,
       };
       jsonData.push(data);
       localStorage.setItem('UsersData', JSON.stringify(jsonData));
     }
   }
+
+  removeAuthUser(): void {
+    this.store.dispatch(new DeleteUser());
+     localStorage.removeItem('AuthUser');
+  }
+
 }

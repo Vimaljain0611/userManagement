@@ -31,7 +31,6 @@ const routes: Routes = [
   declarations: [EmployeesComponent],
   imports: [
     CommonModule,
-    GridModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     ModalModule,
