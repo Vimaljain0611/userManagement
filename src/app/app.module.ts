@@ -10,13 +10,15 @@ import { SignupModule } from './components/auth-pages/signup/signup.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { EmployeeService } from './services/employee.service';
 import { NgxsModule } from '@ngxs/store';
 import { environment } from '../environments/environment';
 import { EmployeeState } from './state/employeeState/employee.state';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { StateService } from './services/state.service';
 import { UserDataState } from './state/userState/user.state';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -31,8 +33,9 @@ import { UserDataState } from './state/userState/user.state';
       developmentMode: !environment.production,
     }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
+    BsDropdownModule.forRoot(),
   ],
-  providers: [AuthService, AuthGuard, StateService],
+  providers: [AuthService, AuthGuard, StateService, EmployeeService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

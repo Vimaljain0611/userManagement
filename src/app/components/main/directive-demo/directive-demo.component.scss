@@ -1,4 +1,24 @@
-.directiveDemoDiv{
-  border: 1px solid #8080807a ;
+$grey: #8080807a;
+.directiveDemoDiv {
+  border: 1px solid $grey;
   padding: 15px;
+  width: 37%;
+
+  .display-color {
+    width: 150px;
+    height: 150px;
+  }
+  .color-picker {
+    border: 1px solid $grey;
+    padding: 15px;
+    .form-group {
+      display: flex;
+      align-items: center;
+      input {
+        width: 16%;
+        margin: 0px 8px;
+        height: 29px;
+      }
+    }
+  }
 }

@@ -2,11 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ListComponent } from './list.component';
+import { TableModule } from 'src/app/table/table.module';
+import { PaginationModule } from 'src/app/pagination/pagination.module';
+import { EditEmployeeModule } from '../edit-employee/edit-employee.module';
+import { DeleteModalModule } from '../delete-modal/delete-modal.module';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
-const routes: Routes =[
+const routes: Routes = [
   {
-    path: '' ,
-    component:ListComponent
+    path: '',
+    component: ListComponent,
   },
 ];
 
@@ -15,7 +20,11 @@ const routes: Routes =[
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    TableModule,
+    PaginationModule,
+    EditEmployeeModule,
+    DeleteModalModule,
+    BsDropdownModule.forRoot(),
   ],
-
 })
-export class ListModule { }
+export class ListModule {}

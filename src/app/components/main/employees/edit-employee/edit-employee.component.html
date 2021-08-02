@@ -1,21 +1,18 @@
 <div class="modal-header">
-  <h3 class="modal-title" id="signUpFormLabel">Sign Up</h3>
+  <h3 class="modal-title" id="signUpFormLabel">Update Employee</h3>
 </div>
 <div class="modal-body">
-  <form [formGroup]="editUserForm" (ngSubmit)="updateUser()">
+  <form [formGroup]="editUserForm" (ngSubmit)="updateUser(id)">
     <div class="form-group">
       <div class="inputDiv w-100 d-inline-flex mb-2">
         <input
           type="text"
           class="form-control"
-          formControlName="fullName"
+          formControlName="name"
           placeholder="Full Name"
         />
         <span
-          ><i
-            class="fa fa-check"
-            *ngIf="editUserForm.controls.fullName.valid"
-          ></i
+          ><i class="fa fa-check" *ngIf="editUserForm.controls.name.valid"></i
         ></span>
       </div>
       <div class="inputDiv w-100 d-inline-flex mb-2">
@@ -48,7 +45,12 @@
   </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-primary" (click)="updateUser()">
+  <button
+    type="button"
+    [disabled]="this.editUserForm.invalid"
+    class="btn btn-primary"
+    (click)="updateUser(id); bsModalRef.hide()"
+  >
     Save
   </button>
   <button type="button" class="btn btn-warning" (click)="bsModalRef.hide()">

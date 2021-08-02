@@ -1,1 +1,57 @@
-<p>list works!</p>
+<div class="row pageCount">
+  <div class="col-md-6">
+    <span><b>Total:</b> {{ activePage }} of {{ totalPageCount }}</span
+    ><br />
+    <span><b>Page:</b> {{ activePage }}</span>
+  </div>
+  <div class="col-md-6 text-end">
+    <div class="btn-group" dropdown>
+      <button
+        id="button-basic"
+        dropdownToggle
+        type="button"
+        class="btn border dropdown-toggle"
+        aria-controls="dropdown-basic"
+      >
+        Page Size : {{ pagesize }} <span class="caret"></span>
+      </button>
+      <ul
+        id="dropdown-basic"
+        *dropdownMenu
+        class="dropdown-menu"
+        role="menu"
+        aria-labelledby="button-basic"
+      >
+        <li role="menuitem">
+          <a class="dropdown-item" (click)="ChangePageSize(5, 1)">5</a>
+        </li>
+        <li role="menuitem">
+          <a class="dropdown-item" (click)="ChangePageSize(10, 1)">10</a>
+        </li>
+        <li role="menuitem">
+          <a class="dropdown-item" (click)="ChangePageSize(15, 1)">15</a>
+        </li>
+        <li role="menuitem">
+          <a class="dropdown-item" (click)="ChangePageSize(20, 1)">20</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <app-table
+    [dataToDisplay]="dataToDisplay"
+    [theadData]="tableHeadData"
+    (openEditEmployeeModal)="openEditEmployeeModal($event)"
+    (openDeleteEmployeeModal)="openDeleteEmployeeModal($event)"
+  ></app-table>
+</div>
+
+<div class="row">
+  <app-pagination
+    [totalRecords]="totalRecords"
+    [recordsPerPage]="pagesize"
+    (onPageChange)="displayActivePage($event)"
+  ></app-pagination>
+</div>

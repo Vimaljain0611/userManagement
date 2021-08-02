@@ -15,18 +15,21 @@
     </div>
     <ng-template #viewSettingButton>
       <ul class="nav navbar-nav navbar-right settingBtn">
-        <div class="dropdown">
+        <div class="btn-group">
           <button
-            class="btn btn-primary dropdown-toggle"
             type="button"
-            data-toggle="dropdown"
+            class="btn btn-primary dropdown-toggle settingBtn"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
           >
-            User <span class="caret"></span>
+            {{ btnTitle }}
           </button>
-          <ul class="dropdown-menu-right dropdown-menu">
-            <li><a>Setting</a></li>
-            <li class="divider"></li>
-            <li><a>Sign Out</a></li>
+          <ul class="dropdown-menu">
+            <li>
+              <button class="dropdown-item" (click)="signOut()">
+                Sign Out
+              </button>
+            </li>
           </ul>
         </div>
       </ul>

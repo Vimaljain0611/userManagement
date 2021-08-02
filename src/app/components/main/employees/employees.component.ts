@@ -20,7 +20,7 @@ export class EmployeesComponent implements OnInit {
     });
   }
 
-  openAddEmployeeModal() {
+  openAddEmployeeModal(): void {
     this.modalRef = this.modalService.show(AddEmployeeComponent);
   }
 }
