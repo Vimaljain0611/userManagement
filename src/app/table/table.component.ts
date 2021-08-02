@@ -25,10 +25,10 @@ export class TableComponent implements OnInit, OnChanges {
     this.theadData;
   }
 
-  openEditModal(id): void {
+  openEditModal(id:number): void {
     this.openEditEmployeeModal.emit(id);
   }
-  deleteModal(id): void {
+  deleteModal(id:number): void {
     this.openDeleteEmployeeModal.emit(id);
   }
 }

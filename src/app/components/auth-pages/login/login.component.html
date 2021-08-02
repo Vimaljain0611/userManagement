@@ -34,7 +34,7 @@
       </div>
       <div class="modal-footer">
         <div class="form-goup">
-          <button type="submit" class="btn btn-primary">Login</button>
+          <button type="submit" [disabled]="this.loginForm.invalid" class="btn btn-primary">Login</button>
         </div>
       </div>
     </form>

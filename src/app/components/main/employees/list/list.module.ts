@@ -6,6 +6,7 @@ import { TableModule } from 'src/app/table/table.module';
 import { PaginationModule } from 'src/app/pagination/pagination.module';
 import { EditEmployeeModule } from '../edit-employee/edit-employee.module';
 import { DeleteModalModule } from '../delete-modal/delete-modal.module';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
     PaginationModule,
     EditEmployeeModule,
     DeleteModalModule,
+    BsDropdownModule.forRoot(),
   ],
 })
 export class ListModule {}

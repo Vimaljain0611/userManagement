@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main.component';
 import { LeftSideBarModule } from './left-side-bar/left-side-bar.module';
-import { ContactModule } from './contact/contact.module';
-
 const routes: Routes = [
   {
     path: '',
@@ -35,20 +33,14 @@ const routes: Routes = [
       {
         path: 'contact-us',
         loadChildren: () =>
-          import('./contact/contact.module').then(
-            (m) => m.ContactModule
-          ),
-      }
+          import('./contact/contact.module').then((m) => m.ContactModule),
+      },
     ],
   },
 ];
 @NgModule({
   declarations: [MainComponent],
-  imports: [
-    CommonModule,
-    LeftSideBarModule,
-    RouterModule.forChild(routes),
-  ],
+  imports: [CommonModule, LeftSideBarModule, RouterModule.forChild(routes)],
   exports: [],
 })
 export class MainModule {}

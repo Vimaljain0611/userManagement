@@ -4,9 +4,9 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
 import { getEmployee } from 'src/app/state/employeeState/employee.action';
 import { EmployeeState } from 'src/app/state/employeeState/employee.state';
-import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
-import { editEmployeeComponent } from '../edit-employee/edit-employee.component';
 import { Employee } from './../../../../state/employeeState/employee';
+import { EmployeeService } from 'src/app/services/employee.service';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-grid',
@@ -21,12 +21,12 @@ export class GridComponent implements OnInit {
   employeesData: Employee[];
   dataToDisplay: Employee[];
   totalPageCount: number;
-  displayActivePage(activePageNumber: number) {
-    this.activePage = activePageNumber;
-    this.totalPageCount = this.getPageCount();
-    this.pagination();
-  }
-  constructor(private modalService: BsModalService, private store: Store) {}
+
+  constructor(
+    private store: Store,
+    private employeeService: EmployeeService,
+    private ref: ChangeDetectorRef
+  ) {}
   @Select(EmployeeState.getEmployee) employee: Observable<Employee[]>;
 
   ngOnInit(): void {
@@ -34,16 +34,13 @@ export class GridComponent implements OnInit {
     this.totalPageCount = this.getPageCount();
     this.pagination();
   }
-
-  private getPageCount(): number {
-    let totalPage = 0;
-    if (this.totalRecords > 0 && this.pagesize > 0) {
-      const pageCount = this.totalRecords / this.pagesize;
-      const roundedPageCount = Math.floor(pageCount);
-      totalPage =
-        roundedPageCount < pageCount ? roundedPageCount + 1 : roundedPageCount;
-    }
-    return totalPage;
+  ngAfterContentChecked():void {
+    this.ref.detectChanges();
+  }
+  displayActivePage(activePageNumber: number) {
+    this.activePage = activePageNumber;
+    this.totalPageCount = this.getPageCount();
+    this.pagination();
   }
 
   ChangePageSize(size, pageNo): void {
@@ -57,20 +54,20 @@ export class GridComponent implements OnInit {
     this.employee.subscribe((val) => {
       this.totalRecords = val.length;
       this.employeesData = val;
+      const lastIndex = this.activePage * this.pagesize;
+      const firstIndex = (this.activePage - 1) * this.pagesize;
+      this.dataToDisplay = this.employeesData.slice(firstIndex, lastIndex);
     });
-    const lastIndex = this.activePage * this.pagesize;
-    const firstIndex = (this.activePage - 1) * this.pagesize;
-    this.dataToDisplay = this.employeesData.slice(firstIndex, lastIndex);
+  }
+  private getPageCount(): number {
+    return this.employeeService.getPageCount(this.totalRecords, this.pagesize);
   }
 
-  openEditEmployeeModal(id): void {
-    this.modalRef = this.modalService.show(editEmployeeComponent);
+  openEditEmployeeModal(id: string): void {
+    this.employeeService.openEditEmployeeModal(id);
   }
 
-  openDeleteEmployeeModal(id): void {
-    const initialState = {
-      id: id,
-    };
-    this.modalService.show(DeleteModalComponent, { initialState });
+  openDeleteEmployeeModal(id: string): void {
+    this.employeeService.openDeleteEmployeeModal(id);
   }
 }

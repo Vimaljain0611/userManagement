@@ -1,4 +1,21 @@
 <h3>Directive Demo</h3>
 <div class="directiveDemoDiv w-30">
   <h4>Directive Demo Controller</h4>
+  <div class="display-color" [appColorPicker]="selectedColor"></div>
+  Selected Color: {{ selectedColor }}
+  <div class="color-picker">
+    <h4>"Color-Picker" Directive</h4>
+    <div class="form-group">
+      Select your favorite color:
+      <input type="color" class="form-control" name="favColor" #favColor />
+      <button (click)="applyColor(favColor.value)">Apply</button>
+    </div>
+    <br />
+    <p>
+      When click on <b><i>"Apply"</i></b> Button Selected favorite color should
+      fill in Square & show its Hex Code in
+      <b><i>"Selected Color"</i></b> Label(in "Directive Demo Controller")
+      outside of Color-Picker Directive.
+    </p>
+  </div>
 </div>

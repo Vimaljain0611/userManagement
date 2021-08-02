@@ -14,7 +14,7 @@ export class DeleteModalComponent implements OnInit {
   constructor(public bsModalRef: BsModalRef, private store: Store) {}
 
   ngOnInit(): void {}
-  deleteEmployee(id) {
+  deleteEmployee(id:string) {
     this.store.dispatch(new DeleteEmployee(id));
   }
 }

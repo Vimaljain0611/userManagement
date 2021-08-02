@@ -1,11 +1,15 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { Employee } from './employee';
-import { UpdateEmployee, getEmployee, DeleteEmployee } from './employee.action';
+import {
+  UpdateEmployee,
+  getEmployee,
+  DeleteEmployee,
+  addNewEmployee,
+} from './employee.action';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { StateService } from '../../services/state.service';
 
-//for employees data
 export class EmployeeStateModel {
   employees: Employee[];
 }
@@ -36,17 +40,30 @@ export class EmployeeState {
     );
   }
 
+  @Action(addNewEmployee)
+  AddNewEmployee(
+    { getState, patchState }: StateContext<EmployeeStateModel>,
+    { data }: addNewEmployee
+  ) {
+    const state = getState();
+    const employeesData = [...state.employees];
+    employeesData.push(data);
+    patchState({
+      employees: employeesData,
+    });
+  }
+
   @Action(UpdateEmployee)
   UpdateEmployee(
     { getState, patchState }: StateContext<EmployeeStateModel>,
     { id, data }: UpdateEmployee
   ) {
     const state = getState();
-    const employees = [...state.employees];
-    const dataIndex = employees.findIndex((item) => item.id === id);
-    employees[dataIndex] = data;
+    const employeesData = [...state.employees];
+    const dataIndex = employeesData.findIndex((item) => item.id === id);
+    employeesData[dataIndex] = data;
     patchState({
-      employees: employees,
+      employees: employeesData,
     });
   }
   @Action(DeleteEmployee)

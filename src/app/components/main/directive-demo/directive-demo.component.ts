@@ -6,7 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./directive-demo.component.scss'],
 })
 export class DirectiveDemoComponent implements OnInit {
+  selectedColor: string = '#000000';
   constructor() {}
 
   ngOnInit(): void {}
+  applyColor(color:string) {
+    this.selectedColor = color;
+  }
 }

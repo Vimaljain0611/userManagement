@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { UserData } from 'src/app/models/userData';
 import { getUsers } from 'src/app/state/userState/user.action';
 import { UserDataState } from 'src/app/state/userState/user.state';
-import { LeftSideBarComponent } from './left-side-bar/left-side-bar.component';
 import { AuthService } from './../../services/auth.service';
 
 @Component({

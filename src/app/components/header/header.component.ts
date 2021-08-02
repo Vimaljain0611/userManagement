@@ -9,7 +9,6 @@ import { AuthService } from './../../services/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-
 export class HeaderComponent implements OnInit {
   viewSignUpButton;
   modalRef: BsModalRef;
@@ -31,11 +30,11 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  openModal() :void{
+  openModal(): void {
     this.modalRef = this.modalService.show(SignupComponent);
   }
 
-  signOut():void {
+  signOut(): void {
     this.authService.authentication.next({});
     this.authService.removeAuthUser();
     this.viewSignUpButton = true;

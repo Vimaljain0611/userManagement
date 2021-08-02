@@ -8,8 +8,7 @@ import { DeleteUser } from './../state/userState/user.action';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private store:Store) {}
-
+  constructor(private store: Store) {}
 
   authentication = new BehaviorSubject({});
 
@@ -74,7 +73,6 @@ export class AuthService {
 
   removeAuthUser(): void {
     this.store.dispatch(new DeleteUser());
-     localStorage.removeItem('AuthUser');
+    localStorage.removeItem('AuthUser');
   }
-
 }

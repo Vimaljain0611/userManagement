@@ -1,10 +1,13 @@
 import { Employee } from './employee';
 
-//for employee datas
 export class getEmployee {
   static readonly type = '[Employee] GetEmployee';
 }
 
+export class addNewEmployee {
+  static readonly type = '[Employee] AddNewEmployee';
+  constructor(public data: Employee) {}
+}
 export class UpdateEmployee {
   static readonly type = '[Employee] UpdateEmployee';
   constructor(public id: string, public data: Employee) {}

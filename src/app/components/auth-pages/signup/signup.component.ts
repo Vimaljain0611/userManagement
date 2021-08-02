@@ -31,7 +31,7 @@ export class SignupComponent implements OnInit {
       confirmPassword: ['', Validators.required],
     });
   }
-  getControls() {
+  getControls():any {
     return this.signUpForm.controls;
   }
   register(): void {

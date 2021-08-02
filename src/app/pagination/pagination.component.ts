@@ -20,7 +20,7 @@ export class PaginationComponent implements OnChanges {
   activePage: number;
   constructor() {}
 
-  ngOnChanges(): any {
+  ngOnChanges(): void {
     const pageCount = this.getPageCount();
     this.pages = this.getArrayOfPage(pageCount);
     this.activePage = 1;
@@ -48,7 +48,6 @@ export class PaginationComponent implements OnChanges {
     }
     return pageArray;
   }
-
   onClickPage(pageNumber: number): void {
     if (pageNumber >= 1 && pageNumber <= this.pages.length) {
       this.activePage = pageNumber;

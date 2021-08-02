@@ -4,9 +4,9 @@ import { getEmployee } from './../../../../state/employeeState/employee.action';
 import { Observable } from 'rxjs';
 import { EmployeeState } from 'src/app/state/employeeState/employee.state';
 import { Employee } from 'src/app/state/employeeState/employee';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { editEmployeeComponent } from '../edit-employee/edit-employee.component';
-import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
+import { BsModalRef } from 'ngx-bootstrap/modal';
+import { EmployeeService } from 'src/app/services/employee.service';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-list',
@@ -25,29 +25,28 @@ export class ListComponent implements OnInit {
   dataToDisplay;
 
   modalRef: BsModalRef;
-  constructor(private store: Store, private modalService: BsModalService) {}
+  constructor(
+    private store: Store,
+    private employeeService: EmployeeService,
+    private ref: ChangeDetectorRef
+  ) {}
   @Select(EmployeeState.getEmployee) employee: Observable<Employee[]>;
+
   ngOnInit(): void {
     this.store.dispatch(new getEmployee());
     this.totalPageCount = this.getPageCount();
     this.pagination();
   }
+  ngAfterContentChecked(): void {
+    this.ref.detectChanges();
+  }
 
-  displayActivePage(activePageNumber: number) {
+  displayActivePage(activePageNumber: number): void {
     this.activePage = activePageNumber;
     this.totalPageCount = this.getPageCount();
     this.pagination();
   }
-  private getPageCount(): number {
-    let totalPage = 0;
-    if (this.totalRecords > 0 && this.pagesize > 0) {
-      const pageCount = this.totalRecords / this.pagesize;
-      const roundedPageCount = Math.floor(pageCount);
-      totalPage =
-        roundedPageCount < pageCount ? roundedPageCount + 1 : roundedPageCount;
-    }
-    return totalPage;
-  }
+
   ChangePageSize(size, pageNo): void {
     this.pagesize = size;
     this.activePage = pageNo;
@@ -55,26 +54,23 @@ export class ListComponent implements OnInit {
     this.pagination();
   }
   pagination(): void {
-    let employeesData;
+    let employeesData:Employee[];
     this.employee.subscribe((val) => {
       this.totalRecords = val.length;
       employeesData = val;
+      const lastIndex = this.activePage * this.pagesize;
+      const firstIndex = (this.activePage - 1) * this.pagesize;
+      this.dataToDisplay = employeesData.slice(firstIndex, lastIndex);
     });
-    const lastIndex = this.activePage * this.pagesize;
-    const firstIndex = (this.activePage - 1) * this.pagesize;
-    this.dataToDisplay = employeesData.slice(firstIndex, lastIndex);
   }
 
-  openEditEmployeeModal(id): void {
-    const initialState = {
-      id: id,
-    };
-    this.modalService.show(editEmployeeComponent);
+  private getPageCount(): number {
+    return this.employeeService.getPageCount(this.totalRecords,this.pagesize);
   }
-  openDeleteEmployeeModal(id): void {
-    const initialState = {
-      id: id,
-    };
-    this.modalService.show(DeleteModalComponent, { initialState });
+  openEditEmployeeModal(id:number): void {
+    this.employeeService.openEditEmployeeModal(id);
+  }
+  openDeleteEmployeeModal(id:number): void {
+    this.employeeService.openDeleteEmployeeModal(id);
   }
 }
