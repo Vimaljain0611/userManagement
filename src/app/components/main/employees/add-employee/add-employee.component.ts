@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from './../../../../services/auth.service';
 import { Store } from '@ngxs/store';
-import { addNewEmployee } from 'src/app/state/employeeState/employee.action';
+import { addNewEmployee } from '../../../../state/employeeState/employee.action';
 
 @Component({
   selector: 'app-add-employee',
@@ -13,10 +13,10 @@ import { addNewEmployee } from 'src/app/state/employeeState/employee.action';
 export class AddEmployeeComponent implements OnInit {
   modalRef: BsModalRef;
   constructor(
-    private fb: FormBuilder,
+    public fb: FormBuilder,
     public bsModalRef: BsModalRef,
-    private authService: AuthService,
-    private store: Store
+    public authService: AuthService,
+    public store: Store
   ) {}
   addEmployeeForm: FormGroup;
   ngOnInit(): void {
@@ -40,6 +40,7 @@ export class AddEmployeeComponent implements OnInit {
       email: form.email,
       contact: form.contact,
     };
+    console.log( this.authService.uudId())
     this.store.dispatch(new addNewEmployee(dataObject));
   }
 }

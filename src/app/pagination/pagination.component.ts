@@ -27,7 +27,7 @@ export class PaginationComponent implements OnChanges {
     this.onPageChange.emit(1);
   }
 
-  private getPageCount(): number {
+  getPageCount(): number {
     let totalPage = 0;
     if (this.totalRecords > 0 && this.recordsPerPage > 0) {
       const pageCount = this.totalRecords / this.recordsPerPage;
@@ -38,7 +38,7 @@ export class PaginationComponent implements OnChanges {
     return totalPage;
   }
 
-  private getArrayOfPage(pageCount: number): number[] {
+  getArrayOfPage(pageCount: number): number[] {
     const pageArray = [];
 
     if (pageCount > 0) {

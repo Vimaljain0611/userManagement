@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, RouterOutlet, Routes } from '@angular/router';
 import { MainComponent } from './main.component';
 import { LeftSideBarModule } from './left-side-bar/left-side-bar.module';
+import { VideoPlayerModule } from '../video-player/video-player.module';
+import { EditImageModule } from 'src/app/edit-image/edit-image.module';
+
 const routes: Routes = [
   {
     path: '',
@@ -40,7 +43,7 @@ const routes: Routes = [
 ];
 @NgModule({
   declarations: [MainComponent],
-  imports: [CommonModule, LeftSideBarModule, RouterModule.forChild(routes)],
+  imports: [CommonModule, LeftSideBarModule, RouterModule.forChild(routes),VideoPlayerModule,EditImageModule],
   exports: [],
 })
 export class MainModule {}

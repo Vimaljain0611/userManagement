@@ -5,7 +5,7 @@ import { GridComponent } from './grid.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { EditEmployeeModule } from '../edit-employee/edit-employee.module';
-import { PaginationModule } from 'src/app/pagination/pagination.module';
+import { PaginationModule } from '../../../../pagination/pagination.module';
 
 const routes: Routes = [
   {

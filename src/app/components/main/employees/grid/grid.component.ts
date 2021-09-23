@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
-import { getEmployee } from 'src/app/state/employeeState/employee.action';
-import { EmployeeState } from 'src/app/state/employeeState/employee.state';
+import { getEmployee } from '../../../../state/employeeState/employee.action';
+import { EmployeeState } from '../../../../state/employeeState/employee.state';
 import { Employee } from './../../../../state/employeeState/employee';
-import { EmployeeService } from 'src/app/services/employee.service';
+import { EmployeeService } from '../../../../services/employee.service';
 import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
@@ -23,9 +23,9 @@ export class GridComponent implements OnInit {
   totalPageCount: number;
 
   constructor(
-    private store: Store,
-    private employeeService: EmployeeService,
-    private ref: ChangeDetectorRef
+    public store: Store,
+    public employeeService: EmployeeService,
+    public ref: ChangeDetectorRef
   ) {}
   @Select(EmployeeState.getEmployee) employee: Observable<Employee[]>;
 
@@ -34,7 +34,7 @@ export class GridComponent implements OnInit {
     this.totalPageCount = this.getPageCount();
     this.pagination();
   }
-  ngAfterContentChecked():void {
+  ngAfterContentChecked(): void {
     this.ref.detectChanges();
   }
   displayActivePage(activePageNumber: number) {
@@ -59,7 +59,7 @@ export class GridComponent implements OnInit {
       this.dataToDisplay = this.employeesData.slice(firstIndex, lastIndex);
     });
   }
-  private getPageCount(): number {
+  getPageCount(): number {
     return this.employeeService.getPageCount(this.totalRecords, this.pagesize);
   }
 

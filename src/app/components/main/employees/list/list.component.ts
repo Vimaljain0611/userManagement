@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { getEmployee } from './../../../../state/employeeState/employee.action';
 import { Observable } from 'rxjs';
-import { EmployeeState } from 'src/app/state/employeeState/employee.state';
-import { Employee } from 'src/app/state/employeeState/employee';
+import { EmployeeState } from '../../../../state/employeeState/employee.state';
+import { Employee } from '../../../../state/employeeState/employee';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { EmployeeService } from 'src/app/services/employee.service';
+import { EmployeeService } from '../../../../services/employee.service';
 import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
@@ -26,8 +26,8 @@ export class ListComponent implements OnInit {
 
   modalRef: BsModalRef;
   constructor(
-    private store: Store,
-    private employeeService: EmployeeService,
+    public store: Store,
+    public employeeService: EmployeeService,
     private ref: ChangeDetectorRef
   ) {}
   @Select(EmployeeState.getEmployee) employee: Observable<Employee[]>;
@@ -54,7 +54,7 @@ export class ListComponent implements OnInit {
     this.pagination();
   }
   pagination(): void {
-    let employeesData:Employee[];
+    let employeesData: Employee[];
     this.employee.subscribe((val) => {
       this.totalRecords = val.length;
       employeesData = val;
@@ -64,13 +64,13 @@ export class ListComponent implements OnInit {
     });
   }
 
-  private getPageCount(): number {
-    return this.employeeService.getPageCount(this.totalRecords,this.pagesize);
+  getPageCount(): number {
+    return this.employeeService.getPageCount(this.totalRecords, this.pagesize);
   }
-  openEditEmployeeModal(id:number): void {
+  openEditEmployeeModal(id: number): void {
     this.employeeService.openEditEmployeeModal(id);
   }
-  openDeleteEmployeeModal(id:number): void {
+  openDeleteEmployeeModal(id: number): void {
     this.employeeService.openDeleteEmployeeModal(id);
   }
 }

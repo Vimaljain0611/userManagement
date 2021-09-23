@@ -1,0 +1,40 @@
+<div class="media-player">
+  <vg-player>
+    <vg-overlay-play></vg-overlay-play>
+    <vg-buffering></vg-buffering>
+
+    <div class="media-player-content">
+      <video [vgMedia]="$any(media)" #media id="video-player" preload="auto">
+        <source
+          src="http://static.videogular.com/assets/videos/videogular.mp4"
+          type="video/mp4"
+        />
+      </video>
+
+      <vg-controls class="controls-bar">
+        <vg-play-pause class="play-button"></vg-play-pause>
+        <div class="play-button stop-button-div" (click)="resetVideo(media)">
+          <div class="stop-button"  ><i class="fa fa-stop-circle"></i></div>
+        </div>
+
+        <vg-playback-button
+          [playbackValues]="['1.0', '2.0', '4.0']"
+        ></vg-playback-button>
+
+        <vg-scrub-bar>
+          <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+          <vg-scrub-bar-current-time
+            [vgSlider]="true"
+          ></vg-scrub-bar-current-time>
+        </vg-scrub-bar>
+
+        <vg-time-display [vgProperty]="'current'"></vg-time-display
+        ><span class="span-time"> / </span>
+        <vg-time-display [vgProperty]="'total'"></vg-time-display>
+        <vg-mute></vg-mute>
+        <vg-volume></vg-volume>
+        <vg-fullscreen></vg-fullscreen>
+      </vg-controls>
+    </div>
+  </vg-player>
+</div>

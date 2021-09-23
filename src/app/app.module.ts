@@ -9,7 +9,6 @@ import { HeaderModule } from './components/header/header.module';
 import { SignupModule } from './components/auth-pages/signup/signup.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EmployeeService } from './services/employee.service';
 import { NgxsModule } from '@ngxs/store';
 import { environment } from '../environments/environment';
@@ -18,6 +17,15 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { StateService } from './services/state.service';
 import { UserDataState } from './state/userState/user.state';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { VgCoreModule } from '@videogular/ngx-videogular/core';
+import { VgControlsModule } from '@videogular/ngx-videogular/controls';
+import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
+import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
+import { EditImageModule } from './edit-image/edit-image.module';
+import { D3ChartModule } from './d3/d3-chart/d3-chart.module';
+import { AreaChartService } from './services/area-chart.service';
+import { ExtractedEntitiesModule } from './extracted-entities/extracted-entities.module';
+import { ChipsDirective } from './directives/chips.directive';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,14 +36,21 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     SignupModule,
     BrowserAnimationsModule,
     ModalModule.forRoot(),
-    FontAwesomeModule,
     NgxsModule.forRoot([UserDataState, EmployeeState], {
       developmentMode: !environment.production,
     }),
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule ,
     NgxsReduxDevtoolsPluginModule.forRoot(),
     BsDropdownModule.forRoot(),
+    EditImageModule,
+    D3ChartModule,
+    ExtractedEntitiesModule,
+
   ],
-  providers: [AuthService, AuthGuard, StateService, EmployeeService],
+  providers: [AuthService, AuthGuard, StateService, EmployeeService,AreaChartService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

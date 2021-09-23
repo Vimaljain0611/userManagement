@@ -1,4 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { AddEmployeeModule } from './add-employee/add-employee.module';
 
 import { EmployeesComponent } from './employees.component';
 
@@ -8,7 +13,14 @@ describe('EmployeesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EmployeesComponent ]
+      declarations: [ EmployeesComponent ],
+      imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        ModalModule,
+        AddEmployeeModule,
+        RouterModule.forChild([]),
+      ]
     })
     .compileComponents();
   });

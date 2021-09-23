@@ -12,7 +12,7 @@ import {
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent implements OnInit, OnChanges {
+export class TableComponent implements OnInit {
   @Input() dataToDisplay;
   @Input() theadData;
   @Output() openEditEmployeeModal: EventEmitter<number> = new EventEmitter();
@@ -20,10 +20,6 @@ export class TableComponent implements OnInit, OnChanges {
   constructor() {}
 
   ngOnInit(): void {}
-  ngOnChanges(): void {
-    this.dataToDisplay;
-    this.theadData;
-  }
 
   openEditModal(id:number): void {
     this.openEditEmployeeModal.emit(id);

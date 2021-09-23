@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DirectiveDemoComponent } from './directive-demo.component';
 import { RouterModule, Routes } from '@angular/router';
-import { ColorPickerDirective } from 'src/app/directives/color-picker.directive';
+import { ColorPickerDirective } from '../../../directives/color-picker.directive';
 
 const routes: Routes = [
   {

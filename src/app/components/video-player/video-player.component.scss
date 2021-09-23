@@ -1,0 +1,41 @@
+.media-player {
+  width: 100%;
+  .media-player-content {
+    .controls-bar {
+      background-color: #222f3d;
+      padding: 16px 23px;
+      height: 5rem;
+
+      .play-button {
+        background-color: #425874;
+        border-radius: 26px;
+      }
+      .span-time {
+        color: white;
+        font-size: 24px;
+        padding-top: 3px;
+      }
+      .stop-button-div {
+        display: flex;
+        justify-content: center;
+        height: 35px;
+        width: 35px;
+        cursor: pointer;
+        align-items: center;
+        line-height: 50px;
+        margin: 8px;
+
+        .stop-button {
+          display: flex;
+          justify-content: center;
+          height: 10px;
+          width: 10px;
+          cursor: pointer;
+          line-height: 50px;
+          background-color: white;
+        }
+      }
+    }
+  }
+
+}

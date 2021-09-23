@@ -13,7 +13,7 @@ import { Employee } from './../state/employeeState/employee';
   providedIn: 'root',
 })
 export class EmployeeService implements OnInit {
-  constructor(private store: Store, private modalService: BsModalService) {}
+  constructor(public store: Store, public modalService: BsModalService) {}
   ngOnInit() {
     this.store.dispatch(new getEmployee());
   }
@@ -24,7 +24,7 @@ export class EmployeeService implements OnInit {
     this.employee.subscribe((val) => {
       employeesData = val;
     });
-    return employeesData.find((val) => val.id == id);
+    return employeesData?.find((val) => val.id == id);
   }
   openEditEmployeeModal(id:any): void {
     const employeeData = this.getEmployeeById(id);

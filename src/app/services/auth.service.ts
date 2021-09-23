@@ -8,7 +8,7 @@ import { DeleteUser } from './../state/userState/user.action';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private store: Store) {}
+  constructor(public store: Store) {}
 
   authentication = new BehaviorSubject({});
 

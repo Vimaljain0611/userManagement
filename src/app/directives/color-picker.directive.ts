@@ -10,7 +10,7 @@ import {
   selector: '[appColorPicker]',
 })
 export class ColorPickerDirective implements OnChanges {
-  constructor(private element: ElementRef, private render: Renderer2) {}
+  constructor(public element: ElementRef, public render: Renderer2) {}
   @Input('appColorPicker') color = 'green';
 
   ngOnChanges() :void{

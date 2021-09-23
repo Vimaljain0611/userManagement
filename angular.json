@@ -28,9 +28,10 @@
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/font-awesome/css/font-awesome.css"
+              "./node_modules/@videogular/ngx-videogular/fonts/videogular.css"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
@@ -87,20 +88,8 @@
           "options": {
             "browserTarget": "userManagement:build"
           }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
-            "scripts": []
-          }
         }
+
       }
     }
   },

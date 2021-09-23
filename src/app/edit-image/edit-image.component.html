@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="image-div">
+        <img
+          src="../../assets/homeImages/dogs.jpg"
+          [style.width]="width"
+          [style.transform]="'rotate(' + rotation + 'deg)'"
+          [style.filter]="'brightness(' + brightness + '%)'"
+          #image
+        />
+      </div>
+    </div>
+
+    <div class="image-controls">
+      <span class="zoomIn"
+        ><i (click)="zoomIn(image)" class="fas fa-search-plus">zoomIn</i></span
+      >
+      <span class="zoomOut"
+        ><i class="fas fa" (click)="zoomOut(image)">zoomout</i>
+      </span>
+      <span><i class="fs fa" (click)="rotateLeft()">Rotate Left</i></span>
+      <span><i (click)="rotateRight()"> Rotate right</i></span>
+      <span><input type="range"  [value]="brightness/2" #range (change)="setBrightness(range)" /></span>
+      <span><i class="fas fa" (click)="reset()">Reset</i></span>
+    </div>
+  </div>
+</div>

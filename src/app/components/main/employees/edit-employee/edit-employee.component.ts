@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { Employee } from 'src/app/state/employeeState/employee';
+import { Employee } from '../../../../state/employeeState/employee';
 import { Store } from '@ngxs/store';
-import { UpdateEmployee } from 'src/app/state/employeeState/employee.action';
+import { UpdateEmployee } from '../../../../state/employeeState/employee.action';
 
 @Component({
   selector: 'app-add-edit-employee',
@@ -15,23 +15,23 @@ export class editEmployeeComponent implements OnInit {
   id: string;
   employeeData: Employee;
   constructor(
-    private fb: FormBuilder,
+    public fb: FormBuilder,
     public bsModalRef: BsModalRef,
-    private store: Store
+    public store: Store
   ) {}
 
   editUserForm: FormGroup;
   ngOnInit(): void {
     this.editUserForm = this.fb.group({
-      name: [this.employeeData.name, Validators.required],
+      name: [this.employeeData?.name, Validators.required],
       email: [
-        this.employeeData.email,
+        this.employeeData?.email,
         [
           Validators.required,
           Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
         ],
       ],
-      contact: [this.employeeData.contact, Validators.required],
+      contact: [this.employeeData?.contact, Validators.required],
     });
   }
 

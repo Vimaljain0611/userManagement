@@ -1,0 +1,7 @@
+{
+  "name": "lib-folder",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/core": "~12.1.1"
+  }
+}

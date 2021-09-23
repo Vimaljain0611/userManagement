@@ -1,0 +1,38 @@
+mat-chip-list {
+  padding-left: 12px;
+  padding-top: 12px;
+}
+:host ::ng-deep {
+  .mat-tab-body-content {
+    overflow: hidden;
+  }
+}
+
+mat-icon {
+  color: #4f4fd4;
+  font-size: 21px;
+  padding: 3px;
+  padding-left: 7px;
+}
+.goIcon {
+  display: none;
+}
+.count {
+  padding-left: 4px;
+  color: red;
+}
+.chips {
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+.chips-body {
+  width: 96%;
+}
+.chips:hover {
+  .goIcon {
+    display: block;
+  }
+  .blank-space {
+    display: none;
+  }
+}

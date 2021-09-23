@@ -1,0 +1,29 @@
+<p>extracted-entities works!</p>
+
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <mat-tab-group>
+      <ng-container *ngFor="let key of userDataKeys">
+        <mat-tab [label]="usersData[key].title">
+          <div class="chips-body">
+            <mat-chip-list aria-label="Person Data">
+              <mat-chip
+                #chip
+                [appChips]
+                *ngFor="let item of usersData[key].items"
+                class="chips"
+              >
+                {{ item.name }}
+                <span class="goIcon count"> {{ item.count }}</span>
+                <mat-icon class="goIcon">label</mat-icon>
+              </mat-chip>
+            </mat-chip-list>
+          </div>
+          <div class="chipsSpace"></div>
+          <div>aa</div>
+        </mat-tab>
+      </ng-container>
+    </mat-tab-group>
+  </div>
+</div>

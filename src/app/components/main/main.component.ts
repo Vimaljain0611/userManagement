@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { UserData } from 'src/app/models/userData';
-import { getUsers } from 'src/app/state/userState/user.action';
-import { UserDataState } from 'src/app/state/userState/user.state';
+import { UserData } from '../../models/userData';
+import { getUsers } from '../../state/userState/user.action';
+import { UserDataState } from './../../state/userState/user.state';
 import { AuthService } from './../../services/auth.service';
 
 @Component({
@@ -13,11 +13,11 @@ import { AuthService } from './../../services/auth.service';
 })
 export class MainComponent implements OnInit {
   constructor(private store: Store, private authService: AuthService) {
-    this.store.dispatch(new getUsers());
   }
   @Select(UserDataState.getUsers) users: Observable<UserData[]>;
 
   ngOnInit(): void {
+    this.store.dispatch(new getUsers());
     let items;
     this.users.subscribe((val) => (items = val));
     this.authService.authentication.next(items);
